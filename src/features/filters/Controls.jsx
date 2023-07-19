@@ -3,8 +3,7 @@ import styled from 'styled-components';
 import { Search } from './Search';
 import { CustomSelect } from './CustomSelect';
 import { useDispatch, useSelector } from 'react-redux';
-import {setRegion} from '../redux/filters/filters-action';
-import {selectFilters} from '../redux/filters/filter-selector'
+import {setRegion, selectFilters} from './filters-slice';
 
 const optionsMap = {
   'Africa': { value: 'Africa', label: 'Africa' },

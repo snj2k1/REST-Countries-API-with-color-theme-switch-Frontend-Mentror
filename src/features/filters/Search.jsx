@@ -2,8 +2,7 @@ import styled from 'styled-components';
 
 import { IoSearch } from 'react-icons/io5';
 import { useDispatch, useSelector } from 'react-redux';
-import {selectFilters} from '../redux/filters/filter-selector'
-import {setSearch} from '../redux/filters/filters-action';
+import {selectFilters, setSearch} from './filters-slice';
 
 const InputContainer = styled.label`
   background-color: var(--colors-ui-base);

@@ -1,8 +1,5 @@
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
-import {loadBorders, clearBorders} from '../redux/borders/borders-action';
-import {selectBorders} from '../redux/borders/borders-selector';
+import { Borders } from '../features/borders/Borders';
 
 const Wrapper = styled.section`
   margin-top: 3rem;
@@ -76,20 +73,6 @@ const Meta = styled.div`
   }
 `;
 
-const TagGroup = styled.div`
-  display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
-`;
-
-const Tag = styled.span`
-  padding: 0 1rem;
-  background-color: var(--colors-ui-base);
-  box-shadow: var(--shadow);
-  line-height: 1.5;
-  cursor: pointer;
-`;
-
 export const Info = (props) => {
   const {
     name,
@@ -105,18 +88,6 @@ export const Info = (props) => {
     borders = [],
     push,
   } = props;
-
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(loadBorders(borders));
-
-    return () => {
-      dispatch(clearBorders())
-    }
-  }, [borders, dispatch])
-
-  const currentBorders = useSelector(selectBorders).borders;
 
   return (
     <Wrapper>
@@ -164,18 +135,7 @@ export const Info = (props) => {
           </List>
         </ListGroup>
         <Meta>
-          <b>Border Countries</b>
-          {!currentBorders.length ? (
-            <span>There is no border countries</span>
-          ) : (
-            <TagGroup>
-              {currentBorders.map((b) => (
-                <Tag key={b.name} onClick={() => push(`/country/${b.name}`)}>
-                  {b.name}
-                </Tag>
-              ))}
-            </TagGroup>
-          )}
+          <Borders borders={borders} push={push}/>
         </Meta>
       </div>
     </Wrapper>
